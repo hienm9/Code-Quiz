@@ -1,0 +1,43 @@
+* {
+    /* box-sizing: border-box; */
+    text-decoration: none;
+  }
+
+.header-section {
+    height: 50px;
+    display: flex;
+
+}
+#highScores {
+    color: rgb(0, 128, 28);
+    /* text-decoration: none; */
+}
+
+#time {
+    float: right;
+}
+
+
+h1 {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+
+}
+
+.quiz-section h1 {
+    text-align: center;
+}
+
+button {
+    border-radius: 7px;
+    background-color: purple;
+    color: white;
+    
+}
+
+li {
+    background-color: purple;
+    margin-top: 10px;
+    font-size: 18px;
+    color: white;
+}
