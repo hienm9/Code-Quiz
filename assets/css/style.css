@@ -6,27 +6,36 @@
 .header-section {
     height: 50px;
     display: flex;
-
-}
-#highScores {
-    color: rgb(0, 128, 28);
-    /* text-decoration: none; */
+    justify-content: space-between;
 }
 
-#time {
-    justify-content: right;
-}
-
-
-h1 {
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+.quiz-section {
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
-
-.quiz-section h1 {
+/* 
+.quiz-section h1{
     text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+.quiz-section p{
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.quiz-section ul{
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.quiz-section button{
+    text-align: center;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+} */
 
 button {
     border-radius: 7px;
