@@ -14,7 +14,7 @@
 }
 
 #time {
-    float: right;
+    justify-content: right;
 }
 
 

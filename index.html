@@ -16,23 +16,36 @@
     <div id="highScores">
         <a href="#"> View High Scores</a>
     </div>
-    <div id="time">
+    <div id="time-count">
         Time: <span> 0</span>
     </div>
 
 </div>
 <!-- Body container which has the quiz -->
 <div class="quiz-section">
-    <h1> Coding Quiz Challenge</h1>
-    <p>Try to answer the following code-related questions within the time limit. <br> 
-    Keep in mind that incorrect answers will penalize your score/time <br> by ten seconds!</p>
+
+    <h1 id="quiz-initial"> Coding Quiz Challenge</h1>
+
+    <div id="choices-init">
+        <p>Try to answer the following code-related questions within the time limit. <br> 
+            Keep in mind that incorrect answers will penalize your score/time <br> by ten seconds!</p>
+            
+        <button id="start-quiz">Start Quiz</button>
+    </div>
+
+    <div id="choices-list">
+    </div>
+
+    <div id="scores-list">     
+    </div>
+    
    <!-- List of choices -->
-    <ul> id="choicesList</ul>
-    <button id="startQuiz">Start Quiz</button>
+    <!-- <ul> id="choicesList"</ul> -->
+    
 </div>
 
-
-<script src="./assets/js/script.js"></script>
+<script type="text/javascript" src="assets/js/script.js"></script>
+<script type="text/javascript" src="assets/questions.js"></script>
 
 </body>
 </html>
