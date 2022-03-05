@@ -1,5 +1,5 @@
 // set array of questions for the quiz
-var questions = [
+let questions = [
     {
         title: "Commonly used data types DO NOT include:",
         choices: ["strings", "booleans", "alerts", "numbers"],
