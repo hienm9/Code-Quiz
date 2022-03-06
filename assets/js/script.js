@@ -47,17 +47,18 @@ function startQuiz() {
     // call countdown function to start the clock
     timeCount();
     // call the listQuestion function to display the questions and answer choices to the page
-    listQuestions(questionNumber);
+    showQuestions(questionNumber);
 }
 
 // set variables for the questions lenght and choices in the array
-let questionNumber = 0;
+let questionNumber = 0; // set current question
+let score = 0; // set current score
 let numberOfQuestions = questions.length;
 let questionTitle = questions[questionNumber].title;
 let questionChoices = questions[questionNumber].choices;
 let listUl = document.createElement("ul");
 
-function listQuestions(questionNumber) {
+function showQuestions(questionNumber) {
     // display questions and choices to the page
     // create a for loop to loop through the questions array
     for (let i =0; i < numberOfQuestions; i++) {
@@ -69,6 +70,7 @@ function listQuestions(questionNumber) {
         let listItem = document.createElement("li")
         listItem.textContent = newChoices;
         quizContentEl.appendChild(listUl);
+        listUl.appendChild(listItem);
 // add event to the choice selection and call a compare function 
 // if user selection matches the answer in the question array
         listItem.addEventListener("click",(compare));
@@ -88,7 +90,7 @@ let penalty = 10;
 function timeCount() {
     let timerInterval = setInterval(function() {
         // displays the time and decreases by second
-        timeEl.textContent = quizTime;
+        timeEl.textContent = "Time: " + quizTime;
         quizTime--;
 
         // end the quiz when the timer hits zero
@@ -107,7 +109,9 @@ function timeCount() {
     }, 1000);
 }
 
-
+function quizEnd() {
+    
+}
 
 
 
