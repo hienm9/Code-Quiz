@@ -29,7 +29,6 @@ let questions = [
 ];
 
 
-
 // set variables for the elements on the page
 let startBtn = document.querySelector("#start-quiz");
 let timeEl = document.querySelector("#time-count");
@@ -110,25 +109,27 @@ function compare(event) {
     let itemSelect = event.target;
 
     if (itemSelect.matches("li")) {
-        // console.log(itemSelect.textContent);
+        console.log(itemSelect.textContent);
         let feedBack = document.createElement("div");
         feedBack.setAttribute("id", "feedBack");
-
-        if (itemSelect.textContent == questions[questionNumber].answer) {
-            feedBack.textContent = "Correct!"
-        } else {
-            feedBack.textContent = "Wrong!"
+        // if (itemSelect.textContent === questions[questionNumber].answer) {
+            feedBack.textContent = "Correct!";
+        // } else {
+            feedBack.textContent = "Wrong!";
             // then take off 10 seconds for wrong answer
             quizTime = quizTime - penalty;
-        }
+        // }
     }
     // increase question number for the next question
     questionNumber++;
 
     if (questionNumber >= numberOfQuestions) {
-        // TO DO - need to display the feed back
-        // TO DO - then call the end quiz function
+        // TO DO - then call the end quiz function to display the score screen
+        quizEnd();
+    } else {
+        showQuestions(questionNumber);
     }
+    quizContentEl.appendChild(feedBack);
 }
 
 
