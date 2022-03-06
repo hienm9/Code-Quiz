@@ -32,7 +32,6 @@ let questions = [
 
 // set variables for the elements on the page
 let startBtn = document.querySelector("#start-quiz");
-// let timeEl = document.getElementById("#time-count");
 let timeEl = document.querySelector("#time-count");
 let quizContentEl = document.querySelector("#quiz-question");
 
@@ -53,39 +52,16 @@ function startQuiz() {
 // set variables for the questions lenght and choices in the array
 let questionNumber = 0; // set current question
 let score = 0; // set current score
+let penalty = 10; // set penalty of 10 seconds for a wrong answer
 let numberOfQuestions = questions.length;
 let questionTitle = questions[questionNumber].title;
 let questionChoices = questions[questionNumber].choices;
 let listUl = document.createElement("ul");
-
-function showQuestions(questionNumber) {
-    // display questions and choices to the page
-    // create a for loop to loop through the questions array
-    for (let i =0; i < numberOfQuestions; i++) {
-    // append question title to the html page
-    quizContentEl.textContent = questionTitle;
-    }
-// append a list of choices for each question
-    questionChoices.forEach(function (newChoices) {
-        let listItem = document.createElement("li")
-        listItem.textContent = newChoices;
-        quizContentEl.appendChild(listUl);
-        listUl.appendChild(listItem);
-// add event to the choice selection and call a compare function 
-// if user selection matches the answer in the question array
-        listItem.addEventListener("click",(compare));
-    })
-}
-
-function compare() {
-
-}
+// var scoreScreen = document.querySelector("#score-section");
+// var initialsEl = document.querySelector("#initials");
 
 //quiz time is 15 seconds each for each question
 let quizTime = numberOfQuestions * 15;
-
-// penalty of 10 seconds for a wrong answer
-let penalty = 10;
 
 function timeCount() {
     let timerInterval = setInterval(function() {
@@ -109,16 +85,67 @@ function timeCount() {
     }, 1000);
 }
 
-function quizEnd() {
-    
+
+function showQuestions(questionNumber) {
+    // display questions and choices to the page
+    // create a for loop to loop through the questions array
+    for (let i =0; i < numberOfQuestions; i++) {
+    // append question title to the html page
+    quizContentEl.textContent = questionTitle;
+    }
+// for each question, create a list and append the choices to the list
+    questionChoices.forEach(function (addChoices) {
+        let listItem = document.createElement("li")
+        listItem.textContent = addChoices;
+        quizContentEl.appendChild(listUl);
+        listUl.appendChild(listItem);
+// add event to the choice selection and call a compare function 
+// if user selection matches the answer in the question array
+        listItem.addEventListener('click',compare);
+    })
+}
+
+// add function event to compare selected choice with answer
+function compare(event) {
+    let itemSelect = event.target;
+
+    if (itemSelect.matches("li")) {
+        // console.log(itemSelect.textContent);
+        let feedBack = document.createElement("div");
+        feedBack.setAttribute("id", "feedBack");
+
+        if (itemSelect.textContent == questions[questionNumber].answer) {
+            feedBack.textContent = "Correct!"
+        } else {
+            feedBack.textContent = "Wrong!"
+            // then take off 10 seconds for wrong answer
+            quizTime = quizTime - penalty;
+        }
+    }
+    // increase question number for the next question
+    questionNumber++;
+
+    if (questionNumber >= numberOfQuestions) {
+        // TO DO - need to display the feed back
+        // TO DO - then call the end quiz function
+    }
 }
 
 
+// create a quiz end function
+// first is to clear out the questions and multiple choice list
+// then do a document create to insert/append text to the header "All done"
+// calculate the remaining time, displays as the final score
+// do a document create for label "Enter your initials"
+// do a document create for input form to store the initials. Need to store it locally
+// do a document create a button "Submit"
+// Submit is a listen event to call a Submit function
 
 
-//Click on the Start Quiz button, it first starts the timer
+function quizEnd() {
 
-//Timer starts with 75 seconds, then counts down every second
+}
+
 
 // For every question, when user selects an answer, 
 // call the compare the function. 
@@ -131,6 +158,28 @@ function quizEnd() {
 // display the Submit button
 // display the text: End quiz
 
-// 
+// TO DO need to set attribute below the 
+// function showQuestions(questionNumber) to style the quizContentEl, 
+// for example from the Module below:
+
+//var createTaskEl = function(taskDataObj) {
+    // var listItemEl = document.createElement("li");
+    // listItemEl.className = "task-item";
+    // listItemEl.setAttribute("data-task-id", taskIdCounter);
+  
+    // var taskInfoEl = document.createElement("div");
+    // taskInfoEl.className = "task-info";
+    // taskInfoEl.innerHTML =
+    //   "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
+    // listItemEl.appendChild(taskInfoEl);
+  
+    // var taskActionsEl = createTaskActions(taskIdCounter);
+    // listItemEl.appendChild(taskActionsEl);
+  
+    // switch (taskDataObj.status) {
+    //   case "to do":
+    //     taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 0;
+    //     tasksToDoEl.append(listItemEl);
+    //     break;
 
 
