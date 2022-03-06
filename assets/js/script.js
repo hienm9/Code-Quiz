@@ -112,9 +112,9 @@ function compare(event) {
         console.log(itemSelect.textContent);
         let feedBack = document.createElement("div");
         feedBack.setAttribute("id", "feedBack");
-        // if (itemSelect.textContent === questions[questionNumber].answer) {
+        if (itemSelect.textContent === questions[questionNumber].answer) {
             feedBack.textContent = "Correct!";
-        // } else {
+        } else {
             feedBack.textContent = "Wrong!";
             // then take off 10 seconds for wrong answer
             quizTime = quizTime - penalty;
@@ -131,6 +131,7 @@ function compare(event) {
     }
     quizContentEl.appendChild(feedBack);
 }
+}
 
 
 // create a quiz end function
@@ -144,6 +145,9 @@ function compare(event) {
 
 
 function quizEnd() {
+    quizContentEl.innerHTML ="";
+    listUl.innerHTML ="";
+    quizTime = 0;
 
 }
 
@@ -182,5 +186,3 @@ function quizEnd() {
     //     taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 0;
     //     tasksToDoEl.append(listItemEl);
     //     break;
-
-
