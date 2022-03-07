@@ -50,7 +50,6 @@ let submitbtn = document.querySelector("#submit-button");
 scoreScreen.setAttribute("style", "display: none;");
 
 
-// TO DO let highScores = [];
 
 // create the function to start the quiz
 function startQuiz() {
