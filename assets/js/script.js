@@ -36,33 +36,34 @@ let quizContentEl = document.querySelector("#quiz-question");
 // start button click to call the startQuiz function
 startBtn.addEventListener('click',startQuiz);
 
-// create the function to start the quiz
-function startQuiz() {
-    // first clear the existing data on the quiz section
-    quizContentEl.innerHTML ="";
-    listUl.innerHTML ="";
-    scoreScreen.setAttribute("style", "display: none;");
-    // call countdown function to start the clock
-    timeCount();
-    // call the listQuestion function to display the questions and answer choices to the page
-    showQuestions(questionNumber);
-}
-
 // set variables for the questions lenght and choices in the array
 let questionNumber = 0; // set current question
 let score = 0; // set current score
 let penalty = 10; // set penalty of 10 seconds for a wrong answer
 let numberOfQuestions = questions.length;
-let questionTitle = questions[questionNumber].title;
-let questionChoices = questions[questionNumber].choices;
+// let questionTitle = questions[questionNumber].title;
+// let questionChoices = questions[questionNumber].choices;
 let listUl = document.createElement("ul");
 let scoreScreen = document.querySelector("#score-section");
 let finalScore = document.querySelector("final-score");
-let initialsEl = document.querySelector("#initials");
-let submitbtn = document.getElementById('submit');
+// let initialsEl = document.querySelector("#initials");
+let submitbtn = document.getElementById("submit-button");
+scoreScreen.setAttribute("style", "display: none;");
 
-// let highScores = [];
 
+// TO DO let highScores = [];
+
+// create the function to start the quiz
+function startQuiz() {
+    // first clear the existing data on the quiz section
+    quizContentEl.innerHTML ="";
+    listUl.innerHTML ="";
+    // scoreScreen.setAttribute("style", "display: none;");
+    // call countdown function to start the clock
+    timeCount();
+    // call the listQuestion function to display the questions and answer choices to the page
+    showQuestions(questionNumber);
+}
 
 //quiz time is 15 seconds each for each question
 let quizTime = numberOfQuestions * 15;
@@ -76,7 +77,8 @@ function timeCount() {
         // end the quiz when the timer hits zero
         if (quizTime <= 0) {
             clearInterval(timerInterval);
-            timeEl.textContent = "0"; // set the time text content back to 0
+            //quizTime needs to go back to the questions times seconds
+            // timeEl.textContent = "0"; // set the time text content back to 0
             quizEnd(); // call the quiz end function
         }
         // stop the clock if user finishs all questions
@@ -87,28 +89,32 @@ function timeCount() {
             quizTime = numberOfQuestions * 15;
         }
     }, 1000);
-    showQuestions(questionNumber);
 }
 
 function showQuestions(questionNumber) {
     quizContentEl.innerHTML ="";
     listUl.innerHTML ="";
+    let questionTitle = questions[questionNumber].title;
+    let questionChoices = questions[questionNumber].choices;
     // display questions and choices to the page
     // create a for loop to loop through the questions array
     for (let i =0; i < numberOfQuestions; i++) {
     // append question title to the html page
     quizContentEl.textContent = questionTitle;
-    }
+    console.log(questionTitle);
+    }     
 // for each question, create a list and append the choices to the list
-    questionChoices.forEach(function (addChoices) {
+    questionChoices.forEach(function (x) {
         let listItem = document.createElement("li")
-        listItem.textContent = addChoices;
+        listItem.textContent = x;
+        console.log(x);
         quizContentEl.appendChild(listUl);
         listUl.appendChild(listItem);
 // add event to the choice selection and call a compare function 
 // if user selection matches the answer in the question array
-        listItem.addEventListener('click',compare);
+        listItem.addEventListener('click',(compare));
     })
+
     // TO DO Need to clear out the previous question
     // TO DO move to the next question
 }
@@ -117,10 +123,10 @@ function showQuestions(questionNumber) {
 // when a selected choice matches with the answer, increase the score
 function compare(event) {
     let itemSelect = event.target;
-
     if (itemSelect.matches("li")) {
         // console.log(itemSelect.textContent);
         let feedBack = document.createElement("div");
+        feedBack.textContent="";
         feedBack.setAttribute("id", "feedBack");
         if (itemSelect.textContent === questions[questionNumber].answer) {
             score++;
@@ -157,12 +163,27 @@ function compare(event) {
 function quizEnd() {
     quizContentEl.innerHTML ="";
     listUl.innerHTML ="";
+
+    if (quizTime >= 0) {
+        finalScore = quizTime;
+        scoreScreen.setAttribute("style", "display: block;");
+    }
+    
+    submitbtn.addEventListener("click", function () {
+        // let initialsEl = document.querySelector("#initials");
+        let initialsEl = document.getElementById("initials").value;
+
+
+        if (initialsEl === null) {
+
+        }
+    })
+
     // timeEl.textContent = "0";
     //display the score content
-    scoreScreen.setAttribute("style", "display: block;");
+    // scoreScreen.setAttribute("style", "display: block;");
 
 }
-
 
 
 // TO DO, need to capture the high score and initial to a local storage
