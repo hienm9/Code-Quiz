@@ -38,16 +38,15 @@ startBtn.addEventListener('click',startQuiz);
 
 // set variables for the questions lenght and choices in the array
 let questionNumber = 0; // set current question
-let score = 0; // set current score
 let penalty = 10; // set penalty of 10 seconds for a wrong answer
 let numberOfQuestions = questions.length;
 // let questionTitle = questions[questionNumber].title;
 // let questionChoices = questions[questionNumber].choices;
 let listUl = document.createElement("ul");
 let scoreScreen = document.querySelector("#score-section");
-let finalScore = document.querySelector("final-score");
+let finalCount = document.querySelector("#final-count");
 // let initialsEl = document.querySelector("#initials");
-let submitbtn = document.getElementById("submit-button");
+let submitbtn = document.querySelector("#submit-button");
 scoreScreen.setAttribute("style", "display: none;");
 
 
@@ -72,6 +71,7 @@ function timeCount() {
     let timerInterval = setInterval(function() {
         // displays the time and decreases by second
         timeEl.textContent = "Time: " + quizTime;
+        finalCount.textContent = "Your final score is: " + quizTime
         quizTime--;
 
         // end the quiz when the timer hits zero
@@ -89,6 +89,7 @@ function timeCount() {
             quizTime = numberOfQuestions * 15;
         }
     }, 1000);
+
 }
 
 function showQuestions(questionNumber) {
@@ -104,10 +105,10 @@ function showQuestions(questionNumber) {
     console.log(questionTitle);
     }     
 // for each question, create a list and append the choices to the list
-    questionChoices.forEach(function (x) {
+    questionChoices.forEach(function (addChoice) {
         let listItem = document.createElement("li")
-        listItem.textContent = x;
-        console.log(x);
+        listItem.textContent = addChoice;
+        console.log(addChoice);
         quizContentEl.appendChild(listUl);
         listUl.appendChild(listItem);
 // add event to the choice selection and call a compare function 
@@ -123,6 +124,7 @@ function showQuestions(questionNumber) {
 // when a selected choice matches with the answer, increase the score
 function compare(event) {
     let itemSelect = event.target;
+    let score=0;
     if (itemSelect.matches("li")) {
         // console.log(itemSelect.textContent);
         let feedBack = document.createElement("div");
@@ -143,7 +145,7 @@ function compare(event) {
     if (questionNumber >= numberOfQuestions) {
         // all the end quiz function to display the score screen
         feedBack.textContent = "TEST end of all questions"
-        feedBack.textContent = "Quiz done!" + " " + "You got  " + score + "/" + questions.length + " Correct!";
+        feedBack.textContent = "You got  " + score + "/" + questions.length + " Correct!";
         finalScore = quizTime;
         quizEnd();
     } else {
@@ -165,23 +167,18 @@ function quizEnd() {
     listUl.innerHTML ="";
 
     if (quizTime >= 0) {
-        finalScore = quizTime;
         scoreScreen.setAttribute("style", "display: block;");
     }
     
     submitbtn.addEventListener("click", function () {
         // let initialsEl = document.querySelector("#initials");
         let initialsEl = document.getElementById("initials").value;
-
+        alert("testing!!!" + initialsEl);
 
         if (initialsEl === null) {
 
         }
     })
-
-    // timeEl.textContent = "0";
-    //display the score content
-    // scoreScreen.setAttribute("style", "display: block;");
 
 }
 
@@ -212,24 +209,3 @@ function quizEnd() {
 
 // TO DO need to set attribute below the 
 // function showQuestions(questionNumber) to style the quizContentEl, 
-// for example from the Module below:
-
-//var createTaskEl = function(taskDataObj) {
-    // var listItemEl = document.createElement("li");
-    // listItemEl.className = "task-item";
-    // listItemEl.setAttribute("data-task-id", taskIdCounter);
-  
-    // var taskInfoEl = document.createElement("div");
-    // taskInfoEl.className = "task-info";
-    // taskInfoEl.innerHTML =
-    //   "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
-    // listItemEl.appendChild(taskInfoEl);
-  
-    // var taskActionsEl = createTaskActions(taskIdCounter);
-    // listItemEl.appendChild(taskActionsEl);
-  
-    // switch (taskDataObj.status) {
-    //   case "to do":
-    //     taskActionsEl.querySelector("select[name='status-change']").selectedIndex = 0;
-    //     tasksToDoEl.append(listItemEl);
-    //     break;

@@ -34,4 +34,6 @@ Pseudo Code
 // display the final score
 // display the initials box
 // display the Submit button
-// display the text: End quiz    
+// display the text: End quiz 
+
+// submit button shows the high score list
