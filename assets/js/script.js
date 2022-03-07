@@ -33,7 +33,6 @@ let questions = [
 let startBtn = document.querySelector("#start-quiz");
 let timeEl = document.querySelector("#time-count");
 let quizContentEl = document.querySelector("#quiz-question");
-
 // start button click to call the startQuiz function
 startBtn.addEventListener('click',startQuiz);
 
@@ -42,6 +41,7 @@ function startQuiz() {
     // first clear the existing data on the quiz section
     quizContentEl.innerHTML ="";
     listUl.innerHTML ="";
+    scoreScreen.setAttribute("style", "display: none;");
     // call countdown function to start the clock
     timeCount();
     // call the listQuestion function to display the questions and answer choices to the page
@@ -56,8 +56,13 @@ let numberOfQuestions = questions.length;
 let questionTitle = questions[questionNumber].title;
 let questionChoices = questions[questionNumber].choices;
 let listUl = document.createElement("ul");
-// var scoreScreen = document.querySelector("#score-section");
-// var initialsEl = document.querySelector("#initials");
+let scoreScreen = document.querySelector("#score-section");
+let finalScore = document.querySelector("final-score");
+let initialsEl = document.querySelector("#initials");
+let submitbtn = document.getElementById('submit');
+
+// let highScores = [];
+
 
 //quiz time is 15 seconds each for each question
 let quizTime = numberOfQuestions * 15;
@@ -82,10 +87,12 @@ function timeCount() {
             quizTime = numberOfQuestions * 15;
         }
     }, 1000);
+    showQuestions(questionNumber);
 }
 
-
 function showQuestions(questionNumber) {
+    quizContentEl.innerHTML ="";
+    listUl.innerHTML ="";
     // display questions and choices to the page
     // create a for loop to loop through the questions array
     for (let i =0; i < numberOfQuestions; i++) {
@@ -102,17 +109,21 @@ function showQuestions(questionNumber) {
 // if user selection matches the answer in the question array
         listItem.addEventListener('click',compare);
     })
+    // TO DO Need to clear out the previous question
+    // TO DO move to the next question
 }
 
 // add function event to compare selected choice with answer
+// when a selected choice matches with the answer, increase the score
 function compare(event) {
     let itemSelect = event.target;
 
     if (itemSelect.matches("li")) {
-        console.log(itemSelect.textContent);
+        // console.log(itemSelect.textContent);
         let feedBack = document.createElement("div");
         feedBack.setAttribute("id", "feedBack");
         if (itemSelect.textContent === questions[questionNumber].answer) {
+            score++;
             feedBack.textContent = "Correct!";
         } else {
             feedBack.textContent = "Wrong!";
@@ -124,7 +135,10 @@ function compare(event) {
     questionNumber++;
 
     if (questionNumber >= numberOfQuestions) {
-        // TO DO - then call the end quiz function to display the score screen
+        // all the end quiz function to display the score screen
+        feedBack.textContent = "TEST end of all questions"
+        feedBack.textContent = "Quiz done!" + " " + "You got  " + score + "/" + questions.length + " Correct!";
+        finalScore = quizTime;
         quizEnd();
     } else {
         showQuestions(questionNumber);
@@ -136,20 +150,32 @@ function compare(event) {
 
 // create a quiz end function
 // first is to clear out the questions and multiple choice list
-// then do a document create to insert/append text to the header "All done"
-// calculate the remaining time, displays as the final score
-// do a document create for label "Enter your initials"
-// do a document create for input form to store the initials. Need to store it locally
-// do a document create a button "Submit"
-// Submit is a listen event to call a Submit function
+// TO DO calculate the remaining time, displays as the final score
+// TO DO Submit is a listen event to call a Submit function
 
 
 function quizEnd() {
     quizContentEl.innerHTML ="";
     listUl.innerHTML ="";
-    quizTime = 0;
+    // timeEl.textContent = "0";
+    //display the score content
+    scoreScreen.setAttribute("style", "display: block;");
 
 }
+
+
+
+// TO DO, need to capture the high score and initial to a local storage
+// TO DO Sorting, highest score first
+
+
+
+
+
+
+
+
+
 
 
 // For every question, when user selects an answer, 
