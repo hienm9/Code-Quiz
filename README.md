@@ -2,6 +2,9 @@
 
 This is a timed quiz application using HTML, CSS, and JavaScript. The quiz has a set of questions, when user selects an answer it displays a feedback to tell user if the answer is correct. It then stores the final time as a high score to the list. User can view a list of high scores at the end of the quiz.
 
+Git Repos: https://github.com/hienm9/Challenge-04-Web-APIs-Code-Quiz
+Deployment: https://hienm9.github.io/Challenge-04-Web-APIs-Code-Quiz/
+
 
 This challenge is created from scratch. The following are used in this quiz application:
 1. Use HTML and CSS to create the basic structure and design.
@@ -34,6 +37,4 @@ Pseudo Code
 // display the final score
 // display the initials box
 // display the Submit button
-// display the text: End quiz 
-
-// submit button shows the high score list
+// display the text: End quiz    
