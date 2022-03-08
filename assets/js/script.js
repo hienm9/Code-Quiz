@@ -40,12 +40,9 @@ startBtn.addEventListener('click',startQuiz);
 let questionNumber = 0; // set current question
 let penalty = 10; // set penalty of 10 seconds for a wrong answer
 let numberOfQuestions = questions.length;
-// let questionTitle = questions[questionNumber].title;
-// let questionChoices = questions[questionNumber].choices;
 let listUl = document.createElement("ul");
 let scoreScreen = document.querySelector("#score-section");
 let finalCount = document.querySelector("#final-count");
-// let initialsEl = document.querySelector("#initials");
 let submitbtn = document.querySelector("#submit-button");
 scoreScreen.setAttribute("style", "display: none;");
 
@@ -56,8 +53,7 @@ function startQuiz() {
     // first clear the existing data on the quiz section
     quizContentEl.innerHTML ="";
     listUl.innerHTML ="";
-    // scoreScreen.setAttribute("style", "display: none;");
-    // call countdown function to start the clock
+    // then call the time count function to start the clock
     timeCount();
     // call the listQuestion function to display the questions and answer choices to the page
     showQuestions(questionNumber);
@@ -76,8 +72,6 @@ function timeCount() {
         // end the quiz when the timer hits zero
         if (quizTime <= 0) {
             clearInterval(timerInterval);
-            //quizTime needs to go back to the questions times seconds
-            // timeEl.textContent = "0"; // set the time text content back to 0
             quizEnd(); // call the quiz end function
         }
         // stop the clock if user finishs all questions
@@ -90,47 +84,44 @@ function timeCount() {
     }, 1000);
 
 }
-
+    // function to display questions and choices to the page
 function showQuestions(questionNumber) {
     quizContentEl.innerHTML ="";
     listUl.innerHTML ="";
     let questionTitle = questions[questionNumber].title;
     let questionChoices = questions[questionNumber].choices;
-    // display questions and choices to the page
+
     // create a for loop to loop through the questions array
     for (let i =0; i < numberOfQuestions; i++) {
     // append question title to the html page
     quizContentEl.textContent = questionTitle;
-    console.log(questionTitle);
+    // quizContentEl.setAttribute("style", "margin-left: 140px;");
     }     
-// for each question, create a list and append the choices to the list
+
+    // for each question, create a list and append the choices to the list
     questionChoices.forEach(function (addChoice) {
         let listItem = document.createElement("li")
+        listItem.setAttribute("style", "padding: 5px; width: 200px; border-radius: 7px;")
         listItem.textContent = addChoice;
         console.log(addChoice);
         quizContentEl.appendChild(listUl);
         listUl.appendChild(listItem);
-// add event to the choice selection and call a compare function 
-// if user selection matches the answer in the question array
+        // add event to the choice selection and call a compare function 
         listItem.addEventListener('click',(compare));
     })
-
-    // TO DO Need to clear out the previous question
-    // TO DO move to the next question
 }
 
 // add function event to compare selected choice with answer
-// when a selected choice matches with the answer, increase the score
+// when a selected choice matches with the answer, display the feedback
 function compare(event) {
     let itemSelect = event.target;
-    let score=0;
+    // let score=0;
     if (itemSelect.matches("li")) {
-        // console.log(itemSelect.textContent);
         let feedBack = document.createElement("div");
         feedBack.textContent="";
         feedBack.setAttribute("id", "feedBack");
         if (itemSelect.textContent === questions[questionNumber].answer) {
-            score++;
+            // score++;
             feedBack.textContent = "Correct!";
         } else {
             feedBack.textContent = "Wrong!";
@@ -142,11 +133,11 @@ function compare(event) {
     questionNumber++;
 
     if (questionNumber >= numberOfQuestions) {
-        // all the end quiz function to display the score screen
-        feedBack.textContent = "TEST end of all questions"
-        feedBack.textContent = "You got  " + score + "/" + questions.length + " Correct!";
+        // feedBack.textContent = "You got  " + score + "/" + questions.length + " Correct!";
         finalScore = quizTime;
         quizEnd();
+        feedBack.setAttribute("style","display:none");
+
     } else {
         showQuestions(questionNumber);
     }
@@ -154,57 +145,56 @@ function compare(event) {
 }
 }
 
-
-// create a quiz end function
-// first is to clear out the questions and multiple choice list
-// TO DO calculate the remaining time, displays as the final score
-// TO DO Submit is a listen event to call a Submit function
-
+// create array to hold the high scores
+let finalScore;
 
 function quizEnd() {
     quizContentEl.innerHTML ="";
     listUl.innerHTML ="";
 
+    // display the score section when the quiz is done
     if (quizTime >= 0) {
         scoreScreen.setAttribute("style", "display: block;");
     }
-    
+ 
+    // create an event listener for the submit button
     submitbtn.addEventListener("click", function () {
-        // let initialsEl = document.querySelector("#initials");
-        let initialsEl = document.getElementById("initials").value;
-        alert("testing!!!" + initialsEl);
+        let initialsInput = document.querySelector("input[name='initials-input']").value;
 
-        if (initialsEl === null) {
+        // check if input is empty
+        if (!initialsInput) {
+           alert("Please put in initials!");
+           return false;
 
+        } else {
+            // set object to contain the user initials and the score
+            let scoreList = {
+                initials: initialsInput,
+                score: finalScore,
+            }
+            console.log(scoreList);
+            let savedScores = localStorage.getItem("savedScores");
+            if (savedScores === null) {
+                savedScores = [];
+            } else {
+
+                // parse score into savedScores array object
+                savedScores = JSON.parse(savedScores);
+            }
+            // push new score to the savedScores array
+            savedScores.push(scoreList);
+            
+            // convert the new score object to a string
+            let newScore = JSON.stringify(savedScores);
+            localStorage.setItem("savedScores", newScore);
+
+            // then move to the highscore page
+            window.location.replace("./highscores.html");
         }
-    })
+
+
+    });
+
+
 
 }
-
-
-// TO DO, need to capture the high score and initial to a local storage
-// TO DO Sorting, highest score first
-
-
-
-
-
-
-
-
-
-
-
-// For every question, when user selects an answer, 
-// call the compare the function. 
-// if answer is right, display text Correct
-// if answer is wrong, display text Wrong, subtract 10 seconds 
-
-// When all questions are answered:
-// display the final score
-// display the initials box
-// display the Submit button
-// display the text: End quiz
-
-// TO DO need to set attribute below the 
-// function showQuestions(questionNumber) to style the quizContentEl, 

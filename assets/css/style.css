@@ -12,7 +12,6 @@
 .quiz-section {
     display: flex;
     flex-direction: column;
-    text-align: center;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 
 }
@@ -21,27 +20,55 @@ button {
     border-radius: 7px;
     background-color: purple;
     color: white;
+    padding:10px;
     
 }
 #quiz-question {
-    color: blue; /* test the color */
     font-weight: bold;
+    text-align: center;
 }
+
+#quiz-question2 {
+    font-weight: bold;
+    text-align: left;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+#score-section {
+    font-weight: bold;
+    text-align: center;
+}
+
 li {
     background-color: purple;
     margin-top: 10px;
     margin-left: 100px;
+    border-top: 10px;
     font-size: 14px;
     color: white;
     width: 50%;
     text-align: left;
 }
 
-#feedback {
+#feedBack {
     margin-top: 20px;
+    margin-left: 140px;
     border-top: 2px solid lightgray;
     font-size: 16px;
+    width: 50%;
+    text-align: left;
+    padding: 10px;
+    font-style: italic;
+    color: darkgray;
 }
-.hide {
-    display: none;
+
+#final-count {
+    margin:20px;
+}
+
+#goBack {
+    padding:10px;
+}
+#clearBtn {
+    padding:10px;
 }

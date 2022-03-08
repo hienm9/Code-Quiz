@@ -37,4 +37,14 @@ Pseudo Code
 // display the final score
 // display the initials box
 // display the Submit button
-// display the text: End quiz    
+// display the text: End quiz 
+
+// when click on the submit button
+// capture the initials input, save it to the local storage
+// capture the time and save it to the local storage 
+// Go to the high score page
+
+// create the high score html page similar to the index without the header
+// create a highscore js file
+// pull out the local storage data of highscores
+// display the high scores
