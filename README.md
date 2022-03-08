@@ -6,11 +6,17 @@ Git Repos: https://github.com/hienm9/Challenge-04-Web-APIs-Code-Quiz
 Deployment: https://hienm9.github.io/Challenge-04-Web-APIs-Code-Quiz/
 
 
-This challenge is created from scratch. The following are used in this quiz application:
-1. Use HTML and CSS to create the basic structure and design.
-2. Use JavaScript objects and functions
-3. Use local Storage API to store results and input
-4. Use window object to move to a different page
+Screenshots:
+assets/images/image1.png
+assets/images/image2.png
+assets/images/image3.png
+assets/images/image4.png
+
+This challenge was created from scratch. The following were used in this quiz application:
+1.  HTML and CSS to create the basic structure and design.
+2.  JavaScript objects and functions
+3.  local Storage API to store results and input
+4.  window object to move to a different page
 
 The index html presents user the quiz instruction, it has the link in top left to see highscore and the right for the timer.
 In the Javascript file, I have the quiz data in an array of the questions with multiple choice and their answer. 
