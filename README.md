@@ -7,10 +7,11 @@ Deployment: https://hienm9.github.io/Challenge-04-Web-APIs-Code-Quiz/
 
 
 Screenshots:
-assets/images/image1.png
-assets/images/image2.png
-assets/images/image3.png
-assets/images/image4.png
+<img width="1370" alt="image1" src="https://user-images.githubusercontent.com/98295316/157170333-60b3efb0-76e3-4dcb-a789-d2c7d5e1617d.png">
+<img width="1367" alt="image2" src="https://user-images.githubusercontent.com/98295316/157170369-5dc41980-7de0-45ae-a645-cbf8722a82e3.png">
+<img width="1362" alt="image3" src="https://user-images.githubusercontent.com/98295316/157170392-cb1b0e7d-7a65-4f87-af7a-3277c70fd39f.png">
+<img width="912" alt="image4" src="https://user-images.githubusercontent.com/98295316/157170407-28bc0fde-ecd5-4581-a163-5cf356b08425.png">
+
 
 This challenge was created from scratch. The following were used in this quiz application:
 1.  HTML and CSS to create the basic structure and design.
