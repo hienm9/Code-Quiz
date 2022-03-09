@@ -55,3 +55,5 @@ Pseudo Code
 // create a highscore js file
 // pull out the local storage data of highscores
 // display the high scores
+
+Credit to https://github.com/jamierachael for great ideas on arragements and solutions.
