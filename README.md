@@ -1,4 +1,4 @@
-# Challenge-04-Web-APIs-Code-Quiz
+# Web-APIs-Code-Quiz
 
 This is a timed quiz application using HTML, CSS, and JavaScript. The quiz has a set of questions, when user selects an answer it displays a feedback to tell user if the answer is correct. It then stores the final time as a high score to the list. User can view a list of high scores at the end of the quiz.
 
